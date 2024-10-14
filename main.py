@@ -20,7 +20,7 @@ def count_number_of_letters(text):
             letter_occurrence[letter] += 1
         else:
             letter_occurrence[letter] = 1
-    print(letter_occurrence)
+    return letter_occurrence
 
-
+def report_
 main()
