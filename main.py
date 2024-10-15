@@ -1,16 +1,21 @@
 def main():
-    with open("books/frankenstein.txt") as f:
-        file_contents = f.read()
     count_words(file_contents)
+    print(f"{count_words(file_contents)} words found in the document")
     count_number_of_letters(file_contents)
+    print(f"{count_number_of_letters(file_contents)} letters found in the document")
+    print_frequency_report(file_contents)
 
+
+
+with open("books/frankenstein.txt") as f:
+    file_contents = f.read()
 
 def count_words(text):
     words = text.split()
     count = 0
     for word in words:
         count += 1
-    print(f"{count} words are found in the document")
+    return count
 
 def count_number_of_letters(text):
     lowercase = text.lower()
@@ -22,5 +27,32 @@ def count_number_of_letters(text):
             letter_occurrence[letter] = 1
     return letter_occurrence
 
-def report_
+def created_culled_sorted_list(text):
+    culled_list = []
+    dictionary = {}
+    lowercase = text.lower()
+    split_text = lowercase.split()
+    for word in split_text:
+        for letter in word:
+            if letter.isalpha():
+                if letter in dictionary:
+                    dictionary[letter] +=1
+                else:
+                    dictionary[letter] = 1
+    for letter in dictionary:
+        dummy_dict = {"character": letter, "frequency": dictionary[letter]}
+        culled_list.append(dummy_dict)
+    culled_list.sort(reverse=True, key=lambda x: x["frequency"])
+    return culled_list
+
+def print_frequency_report(text):
+    culled_list = created_culled_sorted_list(text)
+    count = count_words(text)
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{count} words found in the document")
+    for letter in culled_list:
+        print(f"The '{letter['character']}' character was found '{letter['frequency']}' times")
+    print("--- End report---")
+
+
 main()
