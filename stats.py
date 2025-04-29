@@ -44,5 +44,5 @@ def print_frequency_report(text):
     print("--- Begin report of books/frankenstein.txt ---")
     print(f"{count} words found in the document")
     for letter in culled_list:
-        print(f"The '{letter['character']}' character was found '{letter['frequency']}' times")
+        print(f"{letter['character']}: {letter['frequency']}")
     print("--- End report---")
